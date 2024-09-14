@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules//bootstrap/dist/css/bootstrap.css">
+    <Script  type="text/javascript">
+        function weightchange(){
+            document.getElementById("txtweight").value=document.getElementById("lblweight").value;
+        }
+        function agechange(){
+            document.getElementById("txtage").value=document.getElementById("lblage").value;
+        }
+        function heightchange(){
+            document.getElementById("txtheight").value=document.getElementById("lblheight").value
+        }
+        function calculateclick(){
+            var weight = parseInt(document.getElementById("txtweight").value);
+            var age = parseInt(document.getElementById("txtage").value);
+            var height = parseInt(document.getElementById("txtheight").value);
+            var bmi = weight / Math.pow((height/100),2) ;
+            document.getElementById("result").innerHTML=`${bmi.toFixed(2)} kg/m&sup2`
+            if(bmi>25){
+                document.querySelector("p").innerHTML=" you r overweight"
+            }else if(bmi<18){
+                document.querySelector("p").innerHTML="you r underweight"
+            }else{
+                document.querySelector("p").innerHTML="you r normal"
+            }
+        }
+    </Script>
+</head>
+<body class="container-fluid bg-secondary">
+    <div >
+        <div class="bg-light  p-3 rounded m-4">
+            <h2 class="text-center my-4">BMI calculator</h2>
+            <div class="row text-center">
+                <div class="col">
+                    Your weight <input id="txtweight" class="form-control" type="number"  placeholder="in kg">
+                </div>
+                <div class="col">
+                    your age <input id="txtage" class="form-control" type="number">
+                </div>
+                <div class="col">
+                    your height <input id="txtheight" class="form-control" type="number" placeholder="in cm">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col ">
+                    <input class="form-range" onchange="weightchange()" id="lblweight" type="range" min="30" max="100" value="30">
+                </div>
+                <div class="col">
+                    <input class="form-range" onchange="agechange()" id="lblage" type="range" min="17" max="40" value="17">
+                </div>
+                <div class="col">
+                    <input class="form-range" onchange="heightchange()" id="lblheight" type="range" min="100" max="220" value="100">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span>30</span>
+                    <span class="float-end">100</span>
+                </div>
+                <div class="col">
+                    <span>17</span>
+                    <span class="float-end">40</span>
+                </div>
+                <div class="col">
+                    <span>100</span>
+                    <span class="float-end">220</span>
+                </div>
+            </div>
+            <div class="text-end my-4">
+                <button onclick="calculateclick()" class="text-end btn btn-success">calculate BMI</button>
+            </div>
+            <hr>
+            <h2 id="result">
+
+            </h2>
+            <p class="fw-bold"></p>
+        </div>
+    </div>
+</body>
+</html>
